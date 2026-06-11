@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 리스트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🚀 우리들의 게시판</h2>
+        <div>
+            <span class="fw-bold text-success" th:text="${memberName} + '님 환영합니다!'"></span>
+            <a href="/logout" class="btn btn-sm btn-outline-danger ms-2">로그아웃</a>
+        </div>
+    </div>
+
+    <div class="mb-3 text-end">
+        <a href="/posts/write" class="btn btn-primary">✏️ 새 글 쓰기</a>
+    </div>
+
+    <table class="table table-hover border">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 10%;">번호</th>
+                <th style="width: 50%;">제목</th>
+                <th style="width: 20%;">작성자</th>
+                <th style="width: 20%;">내용 요약</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.id}">1</td>
+                <td class="fw-bold" th:text="${post.title}">테스트 제목</td>
+                <td th:text="${post.writer}">홍길동</td>
+                <td class="text-muted small" th:text="${post.content}">글 내용 일부...</td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(posts)}">
+                <td colspan="4" class="text-center text-muted py-4">아직 작성된 게시글이 없습니다. 첫 글을 남겨보세요!</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
