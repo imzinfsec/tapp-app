@@ -20,7 +20,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven # Gradle을 쓰신다면 gradle로 변경
+        cache: gradle # Gradle을 쓰신다면 gradle로 변경
 
     # [중요] 테라폼 OIDC 역할을 사용하여 로그인 과정 없이 AWS에 안전하게 접속
     - name: Configure AWS credentials
